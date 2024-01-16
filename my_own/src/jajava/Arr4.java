@@ -17,6 +17,7 @@ public class Arr4 {
 			cnum += sr[i].length();
 		}
 		System.out.println("총 문자의 수 : " + cnum);
+		System.out.println("안준섭");
 		}
 	}
 
