@@ -25,6 +25,7 @@ public class testSwing5 extends JFrame{
 		JTextArea tID = new JTextArea(1,8);
 		JTextArea tPW = new JTextArea(1,8);
 		JButton b1 = new JButton("Log-In");
+		b1.setBounds(200, 200, 60, 40);
 		p.add(ID);
 		p.add(tID);
 		p.add(PW);
