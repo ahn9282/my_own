@@ -30,12 +30,21 @@ public class CafeOrder {
 				System.out.println("Please, Insert only number");
 				break;
 			}
+			System.out.print("You order ");
 			for (int i = 0; i < arr.length; i++) {
 				if (arr[i] > 0) {
-					System.out.println(arrP[i].name + " " + arr[i] + " : " + arr[i] * arrP[i].cost);
-					sum += arr[i] * arrP[i].cost;
-				}
-			}
+					System.out.print(arrP[i].name + " " + arr[i] + " ");
+					}
+			}System.out.println();
+			System.out.println("Cost :");
+			for(int i =0; i <arr.length;i++) {
+				if (arr[i] > 0) {
+				System.out.print(arr[i] * arrP[i].cost +  " ");
+				
+				  sum += arr[i] * arrP[i].cost;}
+			}System.out.println();
+				
+			
 			System.out.println("Total cost is " + sum);
 			System.out.println("TANK YOU!!");
 			System.out.println();
