@@ -12,6 +12,7 @@ class TestText {
 	int num = 0;
 	String str;
 	List<String> list = new ArrayList<>();
+	int number =1;
 
 	void ReadText() {
 		int index = 0;
@@ -37,8 +38,11 @@ class TestText {
 			for (int i = 0; i < num; i++) {
 				str = list.get(i);
 				str = str.toUpperCase();
+				bw.write(number + ". ");
 				bw.write(str, 0, str.length());
+				bw.newLine();
 				System.out.println(str);
+				num++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
