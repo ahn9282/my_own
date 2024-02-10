@@ -12,7 +12,7 @@ public class SubClient {
 		// TODO Auto-generated method stub
 		Socket socket = null;
 		try {
-			socket = new Socket("localhost", 9282);
+			socket = new Socket("127.0.0.1", 9282);
 			SendBoard send = new SendBoard(socket);
 			ReceiveBoard recv = new ReceiveBoard(socket);
 			recv.start();
@@ -47,6 +47,8 @@ class SendBoard extends Thread {
 				insert = sc.nextLine();
 				if (insert.equals("0")) {
 					socket.close();
+					sc.close();
+					System.exit(0);
 					break;
 				}
 				out.writeUTF(insert);
