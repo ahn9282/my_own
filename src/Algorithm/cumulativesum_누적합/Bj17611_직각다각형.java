@@ -9,49 +9,46 @@ public class Bj17611_직각다각형 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        Coord[] arr = new Coord[n + 1];
-        for (int i = 0; i < n; i++) {
+        int[] x = new int[1000001];
+        int[] y = new int[1000001];
+        int num = 500000;
+
         StringTokenizer st = new StringTokenizer(br.readLine());
-            arr[i] = new Coord(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+        int startX = Integer.parseInt(st.nextToken()) + num;
+        int startY = Integer.parseInt(st.nextToken()) + num;
+        int firstX = startX;
+        int firstY = startY;
+        for (int i = 1; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            int nextX = Integer.parseInt(st.nextToken()) + num;
+            int nextY = Integer.parseInt(st.nextToken()) + num;
+            if(startX == nextX){
+                y[Math.min(startY, nextY)]++;
+                y[Math.max(startY, nextY)]--;
+            }else{
+                x[Math.min(startX, nextX)]++;
+                x[Math.max(startX, nextX)]--; 
+            }
+            startX = nextX;
+            startY = nextY;
+            
         }
-        arr[n] = arr[0];
-        for (Coord coord : arr) {
-            System.out.println("coord = " + coord);
+        if(startX == firstX){
+            y[Math.min(startY, firstY)]++;
+            y[Math.max(startY, firstY)]--;
+        }else{
+            x[Math.min(startX, firstX)]++;
+            x[Math.max(startX, firstX)]--;
         }
+
         int h = 0;
         int v = 0;
-        Coord start = arr[0];
-        if (start.x == 0) {
-            h ++;
+        for (int i = 1; i < 1000001; i++) {
+            x[i] += x[i - 1];
+            y[i] += y[i - 1];
+            v = Math.max(y[i], v);
+            h = Math.max(x[i], h);
         }
-        if (start.y == 0) {
-            v++;
-        }
-        for (int i = 0; i < n; i++) {
-            Coord now = arr[i];
-            Coord next = arr[i + 1];
-            if (now.x == next.x) {
-                if(Math.abs(now.y-next.y) >= Math.abs(now.y)) v++;
-            }
-            if(now.y == next.y) {
-                if(Math.abs(now.x-next.x) >= Math.abs(now.x)) h++;
-            }
-        }
-        System.out.println("v = " + v +", h = " + h);
         System.out.println(Math.max(v,h));
-
-    }
-
-    public static class Coord {
-        public int x=0;
-        public int y=0;
-        public Coord(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-        @Override
-        public String toString(){
-            return "[ x : " + x + ", y : " + y + "]";
-        }
     }
 }
