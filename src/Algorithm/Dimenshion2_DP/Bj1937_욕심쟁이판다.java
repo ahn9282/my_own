@@ -1,9 +1,8 @@
-package BaekJoon.bronze;
+package Algorithm.Dimenshion2_DP;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Bj1937_욕심쟁이판다 {
