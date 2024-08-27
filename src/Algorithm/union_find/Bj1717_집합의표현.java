@@ -18,7 +18,7 @@ public static void main(String[] args) throws IOException {
 
         parent = new int[N + 1];
 
-        for (int i = 0; i < N + 1; i++) parent[i] = i; // 자기 자신으로 부모 초기화
+        for (int i = 0; i < N + 1; i++) parent[i] = i;
 
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(bf.readLine());
