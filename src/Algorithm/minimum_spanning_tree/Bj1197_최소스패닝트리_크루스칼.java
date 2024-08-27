@@ -13,45 +13,38 @@ public class Bj1197_최소스패닝트리_크루스칼 {
         int M = Integer.parseInt(st.nextToken());
 
         parent = new int[N + 1];
-        Arrays.fill(parent, Integer.MAX_VALUE);
-        arr = new ArrayList[N + 1];
-        for (int i = 0; i < N + 1; i++) {
-            arr[i] = new ArrayList<>();
+        for (int i = 0; i < parent.length; i++) {
+            parent[i] = i;
         }
+        PriorityQueue<cruscalNode> que = new PriorityQueue<>((a,b) -> a.weight - b.weight);
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            arr[i].add(a);
-            arr[i].add(b);
-            parent[b] = a;
-            arr[i].add(Integer.parseInt(st.nextToken()));
+            int c = Integer.parseInt(st.nextToken());
+            que.add(new cruscalNode(a, b, c));
         }
         int answer = 0;
-        for(int i = 0 ; i < arr.length; i++){
-            int A = arr[i].get(0);
-            int B = arr[i].get(1);
-            int weight = arr[i].get(2);
+        for (int i = 0 ; i < que.size(); i++) {
+            cruscalNode node = que.poll();
+            int A = find(node.start);
+            int B = find(node.end);
 
-            A = find(A);
-            B = find(B);
-            if(A == B){
-                continue;
-            }else{
+            if(A != B){
                 union(A, B);
-                answer += weight;
+                answer += node.weight;
             }
         }
         System.out.println(answer);
 
 
     }
-public static int find(int x) {
-  while(parent[x] !=x){
-      x = parent[x];
-  }
-  return x;
-}
+    public static int find(int x) {
+        if (parent[x] == x) {
+            return x;
+        }
+        return parent[x] = find(parent[x]);
+    }
     public static void union(int x, int y) {
         x = find(x);
         y = find(y);
@@ -62,5 +55,16 @@ public static int find(int x) {
                 parent[x] = y;
             }
         }
+    }
+}
+ class cruscalNode{
+    int start;
+    int end;
+    int weight;
+
+    public cruscalNode(int start, int end, int weight) {
+        this.start = start;
+        this.end = end;
+        this.weight = weight;
     }
 }
