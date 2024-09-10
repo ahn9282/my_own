@@ -44,6 +44,7 @@ public class Bj1697_숨바꼭질 {
                         next = temp * 2;
                     }
 
+
                     if (next == K) {
                         System.out.println(check[temp]);
                         return;
