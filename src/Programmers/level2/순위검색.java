@@ -20,28 +20,22 @@ public class 순위검색 {
         int[] answer = new int[query.length];
 
         List< String[]> list = new ArrayList<>(info.length);
-        for (int i =0; i < info.length; i++) {
-            String[] split = info[i].split(" ");
-            list.add(split);
+        for (String s : info) {
+            list.add(s.split(" "));
         }
         for (int i = 0; i < query.length; i++) {
-            String s = query[i];
-            String[] arr = s.split(" and ");
-
+            String[] arr = query[i].replace(" and ", " ").split(" ");
+            int baseScore = Integer.parseInt(arr[4]);
             int num = 0;
 
             for (String[] str : list) {
-
-
                 if (!arr[0].equals("-")&&!str[0].equals(arr[0]))  continue;
                 if ( !arr[1].equals("-") &&!str[1].equals(arr[1]) ) continue;
                 if ( !arr[2].equals("-")&& !str[2].equals(arr[2]) )continue;
-                String[] split = arr[3].split(" ");
-                if ( ! split[0].equals("-") &&  !str[3].equals(split[0]) ) continue;
-                if(!split[1].equals("-")) {
-                    int a = Integer.parseInt(str[4]);
-                    int b = Integer.parseInt(split[1]);
-                    if (a < b) continue;
+                if ( ! arr[3].equals("-") &&  !str[3].equals(arr[3]) ) continue;
+                if(!str[4].equals("-")) {
+                    int score = Integer.parseInt(str[4]);
+                    if (score < baseScore) continue;
                 }
                 num++;
             }
