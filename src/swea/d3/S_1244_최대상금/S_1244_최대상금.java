@@ -1,4 +1,4 @@
-package swea.d3;
+package swea.d3.S_1244_최대상금;
 
 import java.io.BufferedReader;
 import java.io.IOException;

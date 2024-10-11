@@ -1,4 +1,4 @@
-package swea.d3;
+package swea.d3.S_1244_최대상금;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class S_1244_최대상금_V2 {
     static char[] arr;
-    static String maxValue;
+    static int answer = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -20,37 +20,36 @@ public class S_1244_최대상금_V2 {
             String maxNumLen = st.nextToken();
             int maxChange = Integer.parseInt(st.nextToken());
 
+             answer = 0;
             arr = maxNumLen.toCharArray();
-            maxValue = maxNumLen;
 
+            findMaxValue( 0, maxChange);
 
-            findMaxValue(0, 0, maxChange);
-
-            sb.append("#").append(i).append(" ").append(maxValue).append("\n");
+            sb.append("#").append(i).append(" ").append(answer).append("\n");
         }
 
         br.close();
         System.out.println(sb.toString());
     }
 
-    static void findMaxValue(int idx, int iterate, int limit) {
+    static void findMaxValue(int iterate, int limit) {
+
+        int currentValue = Integer.parseInt(new String(arr));
+        answer = Math.max(answer, currentValue);
+
+
         if (iterate == limit) {
-            String currentValue = new String(arr);
-            if (currentValue.compareTo(maxValue) > 0) {
-                maxValue = currentValue;
-            }
             return;
         }
 
-        for (int i = idx; i < arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 swap(i, j);
-                findMaxValue(i, iterate + 1, limit);
+                findMaxValue(iterate + 1, limit);
                 swap(i, j);
             }
         }
     }
-
     static void swap(int i, int j) {
         char temp = arr[i];
         arr[i] = arr[j];
